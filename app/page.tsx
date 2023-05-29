@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import Image from 'next/image';
-import { getClient } from '../util/graphql';
+import { getClient } from '../util/client';
 
 export type GitHubProfileResponse = {
   user: {
