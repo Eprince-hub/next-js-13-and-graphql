@@ -23,7 +23,7 @@ export type GitHubProfileResponse = {
 export default async function Home() {
   const { data } = await getClient().query<GitHubProfileResponse>({
     query: gql`
-      query profileQuery($username: String = "Eprince-hub") {
+      query GithubProfile($username: String = "Eprince-hub") {
         user(login: $username) {
           name
           avatarUrl
@@ -53,13 +53,15 @@ export default async function Home() {
 
       <br />
       <br />
-      <h2>{data.user.name}</h2>
-
       <Image src={data.user.avatarUrl} alt="avatar" width={400} height={400} />
+      <h2>I am {data.user.name}</h2>
 
       <br />
 
-      <h2>Repositories</h2>
+      <strong>
+        Listing my first {data.user.repositories.edges.length} Repositories
+        below
+      </strong>
 
       <ul>
         {data.user.repositories.edges.map((repo) => {
